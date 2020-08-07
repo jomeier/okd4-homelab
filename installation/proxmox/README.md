@@ -53,7 +53,7 @@
 
 ### Create thin pool for vm-data ###
 
-Go to each node in the cluster and add a thin pool for vm-data by adding a new, empty disk without partitions.
+Go to each node in the cluster and add a thin pool 'vmdata' for VM data by adding a new, empty disk without partitions.
 
 ## Add Gnome desktop (optional) ##
 
