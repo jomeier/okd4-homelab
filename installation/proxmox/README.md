@@ -32,7 +32,7 @@
   reboot
   ```
 
-## Preparations for GPU ##
+### Preparations for GPU ###
 
 * Blacklist nouveau driver:
   
@@ -55,13 +55,9 @@
 
 Go to each node in the cluster and add a thin pool for vm-data by adding a new, empty disk without partitions.
 
-### Add Gnome desktop (optional) ###
+## Add Gnome desktop (optional) ##
 
-
-
-
-
-Add user:
+### Add user for desktop ###
 
 ```
 adduser sepp
@@ -71,8 +67,11 @@ Add user to sudoers:
 
 ```
 
+### Disable suspend and sleep mode ###
 
-
+```
+sudo systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target
+```
 
 
 
