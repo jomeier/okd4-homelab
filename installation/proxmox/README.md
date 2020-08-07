@@ -51,46 +51,9 @@
   echo "options vfio-pci ids=10de:13c2,10de:0fbb" > /etc/modprobe.d/vfio.conf
   ```
 
-### Create thin pool for /var/lib/vz ###
+### Create thin pool for vm-data ###
 
-```
-# Create partition on new disk
-sgdisk -N 1 /dev/sdb 
-
-# Create a Physical Volume (PV) without confirmation and 250K metadatasize.
-pvcreate --metadatasize 250k -y -ff /dev/sdb1
-
-# Create a volume group named “vmdata” on /dev/sdb1
-vgcreate vmdata /dev/sdb1
-
-# Creating an extra LV for /var/lib/vz
-# This can be easily done by creating a new thin LV.
-# lvcreate -n <Name> -V <Size[M,G,T]> <VG>/<LVThin_pool>
-lvcreate -n vz -V 1T 
-Now a filesystem must be created on the LV.
-
-# mkfs.ext4 /dev/pve/vz
-
-lvcreate -L 900G -T -n vmstore vmdata
-```
-
-
-```
-service pvedaemon stop
-service pveproxy stop
-service pvestatd stop
-service pve-ha-crm stop
-service pve-ha-lrm stop
-```
-
-```
-rm -rf /var/lib/vz
-mkdir /var/lib/vz
-echo '/dev/vmdata/vmstore /var/lib/vz ext4 defaults 0 2' >> /etc/fstab
-``` 
-
-
-
+Go to each node in the cluster and add a thin pool for vm-data by adding a new, empty disk without partitions.
 
 ### Add Gnome desktop (optional) ###
 
