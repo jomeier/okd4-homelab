@@ -1,11 +1,28 @@
 # Windows Containers #
 
-## Create Ubuntu VM ##
-* Enable Guest Agent in VM options
-* sudo apt-get install qemu-guest-agent
-* sudo systemctl start qemu-guest-agent
+## Install Windows Server 2019 VM ##
+### Doẃnload eval version and create VM ###
+* https://www.microsoft.com/de-de/evalcenter/evaluate-windows-server-2019?filetype=ISO
+* Upload ISO to Proxmox
+* Start VM (4 Cores, 16GB Ram)
 
-## Enable WinRM ##
+### Windows installer ###
+* Select 'Windows Server 2019 Datacenter Evaluation'
+* Custom Install Windows only
+* Reboot VM
+
+### Install Docker ###
+
+https://blog.sixeyed.com/getting-started-with-docker-on-windows-server-2019/
+
+``` 
+powershell
+Install-WindowsFeature -Name Containers
+Uninstall-WindowsFeature Windows-Defender
+Restart-Computer -Force
+```
+
+### Enable WinRM ###
 
 ```
 powershell
@@ -19,3 +36,8 @@ winrm set winrm/config/client/auth '@{Basic="true"}'
 winrm set winrm/config/service '@{AllowUnencrypted="true"}'
 
 ```
+
+
+## Create Fedora 32 server VM ##
+
+
