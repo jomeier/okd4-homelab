@@ -1,3 +1,10 @@
+# Windows Containers #
+
+## Create Ubuntu VM ##
+* Enable Guest Agent in VM options
+* sudo apt-get install qemu-guest-agent
+* sudo systemctl start qemu-guest-agent
+
 ## Enable WinRM ##
 
 ```
