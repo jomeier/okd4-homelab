@@ -41,3 +41,12 @@ winrm set winrm/config/service '@{AllowUnencrypted="true"}'
 ## Create Fedora 32 server VM ##
 
 
+
+## Start overlay network ##
+
+```
+Start-Process -NoNewWindow -FilePath "{{  win_temp_dir.path }}\\hybrid-overlay-node.exe" -ArgumentList "--node  {{ node_name.stdout }} --k8s-kubeconfig c:\\k\\kubeconfig" -RedirectStandardOutput c:\\k\\logs\\hybrid-overlay-node\\hybridOverlayStdout.log -RedirectStandardError c:\\k\\logs\\hybrid-overlay-node\\hybridOverlayStderr.log
+```
+
+
+
