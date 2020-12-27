@@ -1,3 +1,4 @@
+* Open PowerShell terminal
 * ```
   Set-ExecutionPolicy Unrestricted
   ```
